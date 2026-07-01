@@ -1,37 +1,43 @@
 <!DOCTYPE html>
+
 <html lang="english">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Consent Widget</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Consent Widget</title>
+<link href="styles.css" rel="stylesheet"/>
+<style>
+.user-info{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:20px;}
+.user-field{display:flex;flex-direction:column;}
+.user-field label{font-weight:600;margin-bottom:6px;}
+.user-field input{padding:10px;border:1px solid #ccc;border-radius:6px;font-size:14px;}
+@media(max-width:768px){.user-info{grid-template-columns:1fr;}}
+</style></head>
 <body>
-  <div class="widget-container">
-   	<div class="header-language-wrapper-container ">
-		<div id="language-wrapper" style="display: none;">
-		    <div class="dropdown">
-			<label for="langSelect">Language Preference <br></label>
-			<select id="langSelect"></select>
-			</div>
-		</div>  
-	</div>
-    <div class="header-container">
-      <div class="logo-area" id="logo-area"></div>
-    </div>
-    	<div class ="preview-statements">
-        <div id="consent-root">Loading consent form...</div>
-        <div id="error-message" class="error-message"></div>
-        <div id="toast"></div>
-      </div> 
-      <div class="full-width-footer-border"></div>
-      <div class="button-group" id="button-group">
-          <button class="cancel" id="cancelBtn" style="display: none;">Cancel</button>
-          <button class="submit" id="submitBtn" style="display: none;">Submit</button>
-      </div>
-    
-  </div>
-  <script>
+<div class="widget-container">
+<div class="header-language-wrapper-container">
+<div id="language-wrapper" style="display: none;">
+<div class="dropdown">
+<label for="langSelect">Language Preference <br/></label>
+<select id="langSelect"></select>
+</div>
+</div>
+</div>
+<div class="header-container">
+<div class="logo-area" id="logo-area"></div>
+</div><div class="user-info"><div class="user-field"><label for="firstName">First Name</label><input id="firstName" name="firstName" placeholder="First Name" type="text"/></div><div class="user-field"><label for="lastName">Last Name</label><input id="lastName" name="lastName" placeholder="Last Name" type="text"/></div><div class="user-field"><label for="mobile">Mobile Number</label><input id="mobile" name="mobile" placeholder="Mobile Number" type="text"/></div><div class="user-field"><label for="email">Email ID</label><input id="email" name="email" placeholder="Email ID" type="text"/></div></div>
+<div class="preview-statements">
+<div id="consent-root">Loading consent form...</div>
+<div class="error-message" id="error-message"></div>
+<div id="toast"></div>
+</div>
+<div class="full-width-footer-border"></div>
+<div class="button-group" id="button-group">
+<button class="cancel" id="cancelBtn" style="display: none;">Cancel</button>
+<button class="submit" id="submitBtn" style="display: none;">Submit</button>
+</div>
+</div>
+<script>
     // Configuration options for the consent widget
     window.consentWidgetConfig = {
       consentFormId: "90f85b5a-5839-4fdf-8053-cbd2f61982b8",
@@ -42,7 +48,7 @@
       dataPrincipalId: [
         {
           key: "email",
-          value: "release2@yopmail.com"
+          value: "release3@yopmail.com"
         }
       ],
       customAttributes: {
@@ -89,8 +95,6 @@
       return "Config updated successfully";
     };
   </script>
-  
-
 <!--
   Optional: Use custom buttons if the parent application
   wants to control Consent Form submission and reset actions.
@@ -100,9 +104,7 @@
   - Submit button calls `consentWidget.submit()`.
   - Clear button calls `consentWidget.reset()`.
 -->
-
 <!--Example-->
-
 <!--
 <button id="parentClearBtn" style="padding:10px 16px; background:#dc2626; color:white; border:none; border-radius:6px;">
   Clear Consent
@@ -139,6 +141,6 @@
   Replace HASH_VALUE_HERE with actual hash generated from script.js
   Note: SRI may not work with file:// protocol in Android WebView - test thoroughly
 -->
-<script src="script.js" integrity="sha384-YQ1aasibiEptXTSlcG+e4cc++qi9rbKGk3pFrePnwj6X7c3/H5IA+z8iw7te9AEO" crossorigin="anonymous"></script>
+<script crossorigin="anonymous" src="script.js"></script>
 </body>
 </html>

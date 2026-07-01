@@ -390,15 +390,31 @@ async function fetchConsentData(selectedLang) {
 }
 
 function setDataPrincipalIdList() {
-  dataPrincipalIdList = [];
-  const { dataPrincipalId } = window.consentWidgetConfig || {};
-  if (Array.isArray(dataPrincipalId)) {
-    dataPrincipalId.forEach(({ key, value }) => {
-      if (key && value) {
-        dataPrincipalIdList.push({ key, value });
-      }
-    });
-  }
+
+    dataPrincipalIdList = [];
+
+    // Read the latest email entered by the user
+    const emailValue = document.getElementById("email")?.value?.trim();
+
+    // Update the widget config
+    window.consentWidgetConfig.dataPrincipalId = [
+        {
+            key: "email",
+            value: emailValue
+        }
+    ];
+
+    const { dataPrincipalId } = window.consentWidgetConfig;
+
+    if (Array.isArray(dataPrincipalId)) {
+        dataPrincipalId.forEach(({ key, value }) => {
+            if (key && value) {
+                dataPrincipalIdList.push({ key, value });
+            }
+        });
+    }
+
+    console.log("Updated dataPrincipalIdList:", dataPrincipalIdList);
 }
 
 function showToast(message, type) {
